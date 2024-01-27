@@ -10,9 +10,9 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body class='bg-stone-200'>
     <%= render partial: 'navbar/nav' %>
-    <div class="mt-16">
+    <div class="mt-20 md:mt-16 max-w-screen-xl mx-auto px-4 py-4">
       <%= yield %>
     </div>
   </body>

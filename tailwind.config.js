@@ -6,5 +6,15 @@ module.exports = {
     "./app/javascript/**/*.js",
     "./node_modules/flowbite/**/*.js",
   ],
+  theme: {
+    extend: {
+      colors: {
+        primary: "#294B29",
+        secondary: "#50623A",
+        third: "#789461",
+        fourth: "#DBE7C9",
+      },
+    },
+  },
   plugins: [require("flowbite/plugin")],
 };
