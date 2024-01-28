@@ -28,6 +28,7 @@ end
 group :development do
   gem "web-console"
   gem "letter_opener"
+  gem 'pry', '~> 0.14.2'
   # gem "rack-mini-profiler"
   # gem "spring"
 end

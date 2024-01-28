@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  HELLO_BLOGGER_EMAIL = 'hello@blogger.com'
+  default from: %("Bloggers" <#{HELLO_BLOGGER_EMAIL}>)
   layout "mailer"
 end
