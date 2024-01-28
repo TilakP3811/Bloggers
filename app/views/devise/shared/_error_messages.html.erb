@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <div class="p-4 mb-2 text-sm border border-red-200 text-red-800 rounded bg-red-50" role="alert">
+  <div class="py-2 px-4 mb-2 text-sm border border-red-200 text-red-800 rounded bg-red-50" role="alert">
     <%= resource.errors.full_messages.to_sentence.capitalize %>
   </div>
 <% end %>

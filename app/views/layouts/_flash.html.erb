@@ -1,6 +1,6 @@
 <% flash.each do |flash_type, message| %>
   <div 
-    class="absolute right-52 top-20 flash-animate py-2 px-4 mb-4 text-sm border border-red-200 text-red-800 rounded bg-red-50"
+    class="absolute right-52 top-20 flash-animate py-2 px-4 mb-4 text-sm border border-red-200 text-red-800 rounded bg-red-50 cursor-pointer"
     role="alert"
     data-controller="removals"
     data-action="animationend->removals#remove"
