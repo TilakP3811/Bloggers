@@ -1,5 +1,14 @@
 module Forms
   class SignUp < BaseForm
+    class SignUpResult
+      attr_reader :user, :registrations
+
+      def initialize(registrations:)
+        @user             = registrations.user
+        @registrations    = registrations
+      end
+    end
+
     attr_accessor :email, :password, :password_confirmation, :registrations_uuid
 
     def initialize(*args)
@@ -15,6 +24,10 @@ module Forms
         m.some { |user| existing_account(user) }
         m.none { new_account }
       end
+    end
+
+    def ok_result
+      SignUpResult.new(registrations: @user_registration)
     end
 
     def maybe_existing_user
@@ -45,9 +58,11 @@ module Forms
     def maybe_create_registration_for(user)
       activation_code = SecureRandom.alphanumeric(6).upcase
 
-      save_or_report_error(
-        Registration.new(user: user, uuid: registrations_uuid, activation_code: activation_code)
-      )
+      save_or_report_error(user_registration(user, activation_code))
+    end
+
+    def user_registration(user, activation_code)
+      @user_registration ||= Registration.new(user: user, uuid: registrations_uuid, activation_code: activation_code)
     end
 
     def existing_account(user)
