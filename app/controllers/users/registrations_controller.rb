@@ -18,8 +18,10 @@ module Users
     end
 
     def handle_failure(err)
-      flash[:error] = "Invalid input: #{err.full_messages.join ', '}"
-      redirect_to new_user_registration_path
+      sign_out
+      self.resource = resource_class.new(sign_up_params)
+      resource.save
+      respond_with resource, location: new_user_registration_path(resource)
     end
   end
 end
