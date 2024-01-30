@@ -5,7 +5,7 @@ module Users
 
       form.submit.match do |m|
         m.success { |results| handle_success(results) }
-        m.failure { handle_failure }
+        m.failure { |err| handle_failure(err) }
       end
     end
 
@@ -16,8 +16,9 @@ module Users
       redirect_to new_users_verifications_path(registration_uuid: results.registrations.uuid)
     end
 
-    def handle_failure
-
+    def handle_failure(err)
+      flash[:error] = "Invalid input: #{err.full_messages.join '; '}"
+      redirect_to new_user_registration_path
     end
   end
 end

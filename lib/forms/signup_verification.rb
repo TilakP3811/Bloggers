@@ -2,7 +2,7 @@ module Forms
   class SignupVerification < BaseForm
     attr_accessor :verification_params
 
-    WRONG_ACTIVATION_CODE = 'is incorrect please try again with correct one.'
+    INVALID_ACTIVATION_CODE = 'is invalid.'
 
     def initialize(verification_params:)
       @verification_params = verification_params
@@ -15,7 +15,7 @@ module Forms
     def do_submit
       maybe_incomplete_registration.match do |m|
         m.some { |registration| complete_registration(registration) }
-        m.none { add_field_error :activation_code, WRONG_ACTIVATION_CODE }
+        m.none { add_field_error :activation_code, INVALID_ACTIVATION_CODE }
       end
     end
 
@@ -27,8 +27,10 @@ module Forms
     end
 
     def complete_registration(registration)
-      registration.user.verify
-      registration.destroy
+      registration.user.try_update(verified: true).match do |m|
+        m.success { registration.destroy }
+        m.failure { report_unknown_error }
+      end
     end
   end
 end

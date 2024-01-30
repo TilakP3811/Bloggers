@@ -1,6 +1,8 @@
 <nav class="bg-primary dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <%= link_to 'Bloggers', root_path, class: "self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white" %>
-    <%= link_to 'Sign in', new_user_session_path, class: "block py-2 px-3 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:p-0 text-white" %>
+    <% unless current_user %>
+      <%= link_to 'Sign in', new_user_session_path, class: "block py-2 px-3 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:p-0 text-white" %>
+    <% end %>
   </div>
 </nav>

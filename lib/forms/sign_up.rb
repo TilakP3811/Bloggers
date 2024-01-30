@@ -11,6 +11,8 @@ module Forms
 
     attr_accessor :email, :password, :password_confirmation, :registrations_uuid
 
+    validate :valid_email, :valid_password, :valid_password_confirmation
+
     def initialize(*args)
       super
 
@@ -71,6 +73,24 @@ module Forms
 
     def send_mail_to_activate_account_for(registration)
       UserMailer.activate_account(registration).deliver_later
+    end
+
+    def valid_email
+      return if email.match?(User::EMAIL_FORMAT)
+
+      add_field_error(:email,  I18n.t('devise.failure.invalid_email'))
+    end
+
+    def valid_password
+      return if password.match?(User::PASSWORD_FORMAT)
+
+      add_field_error(:password, I18n.t('devise.failure.invalid_password'))
+    end
+
+    def valid_password_confirmation
+      return if password == password_confirmation
+
+      add_field_error(:password_confirmation, I18n.t('devise.failure.invalid_password_confirmation'))
     end
   end
 end

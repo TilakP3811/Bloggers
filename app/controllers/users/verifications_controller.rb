@@ -2,14 +2,15 @@ module Users
   class VerificationsController < ApplicationController
     skip_before_action :check_account_verification
 
-    def new
-    end
+    VERIFICATION_SUCCESS = 'Your Account is verified.'
+
+    def new; end
 
     def create
       form = Forms::SignupVerification.new(verification_params: verification_params)
 
       form.submit.match do |m|
-        m.success {}
+        m.success { flash[:notice] = VERIFICATION_SUCCESS }
         m.failure { |err| flash[:error] = "Verification failed: #{err.full_messages.join '; '}" }
       end
 

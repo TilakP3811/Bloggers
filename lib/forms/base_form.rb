@@ -43,7 +43,7 @@ module Forms
       errors.add :non_field_errors, error
     end
 
-    def report_unknown_error(field_name)
+    def report_unknown_error
       add_non_field_error 'Something went wrong!'
     end
   end
