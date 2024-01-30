@@ -1,5 +1,7 @@
 module Users
   class RegistrationsController < Devise::RegistrationsController
+    skip_before_action :check_account_verification
+
     def create
       form = Forms::SignUp.new sign_up_params
 

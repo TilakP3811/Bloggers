@@ -1,7 +1,5 @@
 module Forms
   class SignUp < BaseForm
-
-
     class SignUpResult
       attr_reader :user, :registrations
 
