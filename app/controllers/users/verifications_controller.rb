@@ -2,16 +2,14 @@ module Users
   class VerificationsController < ApplicationController
     skip_before_action :check_account_verification
 
-    VERIFICATION_SUCCESS = 'Your Account is verified.'
-
     def new; end
 
     def create
       form = Forms::SignupVerification.new(verification_params: verification_params)
 
       form.submit.match do |m|
-        m.success { flash[:notice] = VERIFICATION_SUCCESS }
-        m.failure { |err| flash[:error] = "Verification failed: #{err.full_messages.join '; '}" }
+        m.success { flash[:notice] = I18n.t('devise.confirmations.confirmed') }
+        m.failure { |err| flash[:error] = "Verification failed: #{err.full_messages.join ', '}" }
       end
 
       redirect_to root_path

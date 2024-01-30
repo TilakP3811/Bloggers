@@ -1,5 +1,7 @@
 module Forms
   class SignUp < BaseForm
+
+
     class SignUpResult
       attr_reader :user, :registrations
 
@@ -11,7 +13,9 @@ module Forms
 
     attr_accessor :email, :password, :password_confirmation, :registrations_uuid
 
-    validate :valid_email, :valid_password, :valid_password_confirmation
+    validate :valid_email
+    validates_with Validators::PasswordCompatible
+    validate :valid_password_confirmation
 
     def initialize(*args)
       super
@@ -69,6 +73,7 @@ module Forms
 
     def existing_account(user)
       UserMailer.existing_account(user).deliver_later
+      add_field_error :email, I18n.t('devise.failure.email_existed')
     end
 
     def send_mail_to_activate_account_for(registration)
@@ -79,12 +84,6 @@ module Forms
       return if email.match?(User::EMAIL_FORMAT)
 
       add_field_error(:email,  I18n.t('devise.failure.invalid_email'))
-    end
-
-    def valid_password
-      return if password.match?(User::PASSWORD_FORMAT)
-
-      add_field_error(:password, I18n.t('devise.failure.invalid_password'))
     end
 
     def valid_password_confirmation

@@ -12,4 +12,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: true },
             format: { with: EMAIL_FORMAT, message: I18n.t('devise.failure.invalid_email') }
   validates :password, confirmation: true
+
+  validates_with Validators::PasswordCompatible
 end

@@ -27,10 +27,7 @@ module Forms
     end
 
     def complete_registration(registration)
-      registration.user.try_update(verified: true).match do |m|
-        m.success { registration.destroy }
-        m.failure { report_unknown_error }
-      end
+      registration.user.try_update(verified: true).map_err { report_unknown_error }
     end
   end
 end

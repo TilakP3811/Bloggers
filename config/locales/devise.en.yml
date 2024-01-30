@@ -13,6 +13,7 @@ en:
       invalid_email: "has invalid format."
       invalid_password: "must be 8 char long and should contain at least one special character and one digit."
       invalid_password_confirmation: "is doesn't match password."
+      email_existed: "has already been taken."
       locked: "Your account is locked."
       last_attempt: "You have one more attempt before your account is locked."
       not_found_in_database: "Invalid %{authentication_keys} or password."
