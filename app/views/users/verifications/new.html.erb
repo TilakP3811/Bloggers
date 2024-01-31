@@ -6,7 +6,7 @@
   <div class='py-2'>
     <%= form_for('verification', url: users_verifications_path, html: { method: :post }) do |f| %>
       <div class="py-2 px-4 mb-2 text-sm border border-blue-200 text-blue-800 rounded bg-blue-50" role="alert">
-        Please check your email for verification code
+        You should received an confirmation email. Please check your email for verification code
       </div>
       <%= f.hidden_field :registration_uuid, value: params[:registration_uuid] %>
 

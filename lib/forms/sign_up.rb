@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Forms
   class SignUp < BaseForm
     class SignUpResult
@@ -45,10 +47,7 @@ module Forms
     end
 
     def create_user
-      user = User.new(
-        email:      @email,
-        password:   @password
-      )
+      user = User.new(email: @email, password: @password)
 
       save_or_report_error user
     end
@@ -66,7 +65,7 @@ module Forms
     end
 
     def user_registration(user, activation_code)
-      @user_registration ||= Registration.new(user: user, uuid: registrations_uuid, activation_code: activation_code)
+      @user_registration ||= Registration.new(user:, uuid: registrations_uuid, activation_code:)
     end
 
     def existing_account(user)
@@ -81,7 +80,7 @@ module Forms
     def valid_email
       return if email.match?(User::EMAIL_FORMAT)
 
-      add_field_error(:email,  I18n.t('devise.failure.invalid_email'))
+      add_field_error(:email, I18n.t('devise.failure.invalid_email'))
     end
 
     def valid_password_confirmation

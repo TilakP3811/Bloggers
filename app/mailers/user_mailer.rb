@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# rubocop:disable Rails/I18nLocaleTexts
 class UserMailer < ApplicationMailer
   def activate_account(registration)
     @registration = registration
@@ -12,3 +15,4 @@ class UserMailer < ApplicationMailer
     )
   end
 end
+# rubocop:enable Rails/I18nLocaleTexts

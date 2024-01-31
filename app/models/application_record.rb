@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 
-  def self.option_find_by(*args)
-    Fear.option(find_by(*args))
+  def self.option_find_by(*)
+    Fear.option(find_by(*))
   end
 
   def self.wrap_optionals
     columns.each do |column|
-      next if !column.null
+      next unless column.null
 
       define_method column.name do
         Fear.option self[column.name]
@@ -15,8 +17,8 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
-  def try_update(*args)
-    is_success = update(*args)
+  def try_update(*)
+    is_success = update(*)
 
     return Fear.success(nil) if is_success
 

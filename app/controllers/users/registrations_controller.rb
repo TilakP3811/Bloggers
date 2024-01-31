@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   class RegistrationsController < Devise::RegistrationsController
     skip_before_action :check_account_verification
@@ -7,7 +9,7 @@ module Users
 
       form.submit.match do |m|
         m.success { |results| handle_success(results) }
-        m.failure { |err| handle_failure(err) }
+        m.failure { handle_failure }
       end
     end
 
@@ -19,7 +21,7 @@ module Users
       redirect_to new_users_verifications_path(registration_uuid: results.registrations.uuid)
     end
 
-    def handle_failure(err)
+    def handle_failure
       sign_out
       self.resource = resource_class.new(sign_up_params)
       resource.save

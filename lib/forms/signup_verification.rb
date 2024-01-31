@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Forms
   class SignupVerification < BaseForm
     attr_accessor :verification_params
@@ -21,7 +23,7 @@ module Forms
 
     def maybe_incomplete_registration
       Registration.option_find_by(
-        uuid: verification_params[:registration_uuid],
+        uuid:            verification_params[:registration_uuid],
         activation_code: verification_params[:activation_code]
       )
     end
