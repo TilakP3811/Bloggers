@@ -2,8 +2,6 @@
 
 require 'rspec/its'
 require 'simplecov'
-require 'simplecov-cobertura'
-
 if ENV['CI']
   require 'simplecov-cobertura'
   SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
