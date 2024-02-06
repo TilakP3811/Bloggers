@@ -26,6 +26,7 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'
+  gem 'pry', '~> 0.14.2'
 end
 
 group :test do
@@ -37,7 +38,6 @@ end
 
 group :development do
   gem 'letter_opener'
-  gem 'pry', '~> 0.14.2'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
