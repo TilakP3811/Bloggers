@@ -35,8 +35,7 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: Setup DB, Run tests
         env:
-          PGHOST: postgres
-          PGUSER: postgres
+          PGUSER: bloggers_test
           PGPORT: ${{ job.services.postgres.ports[5432] }}
           RAILS_ENV: test
         run: |
