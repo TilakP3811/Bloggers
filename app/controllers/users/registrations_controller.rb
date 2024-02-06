@@ -4,6 +4,8 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     skip_before_action :check_account_verification, except: %i[edit]
 
+    def edit; end
+
     def create
       form = Forms::SignUp.new sign_up_params
 
@@ -12,8 +14,6 @@ module Users
         m.failure { handle_failure }
       end
     end
-
-    def edit; end
 
     private
 
