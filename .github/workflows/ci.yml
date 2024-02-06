@@ -12,6 +12,8 @@ jobs:
           ruby-version: 3.2.2
       - name: Install dependencies
         run: bundle install
+      - name: run pending migrations
+        run: bundle exec rails db:drop db:create db:migrate
       - name: Run tests and collect coverage
         run: bundle exec rspec
       - name: Upload coverage to Codecov
