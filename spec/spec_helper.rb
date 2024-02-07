@@ -3,7 +3,7 @@
 require 'rspec/its'
 
 require 'simplecov'
-if ENV['RAILS_ENV'] == 'test'
+if ENV['CI']
   require 'simplecov-cobertura'
   SimpleCov.start
   SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
