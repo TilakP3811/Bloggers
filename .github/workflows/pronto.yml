@@ -19,4 +19,4 @@ jobs:
           bundler-cache: true
       - name: Run Pronto
         run: |
-          PRONTO_PULL_REQUEST_ID="${{ github.event.pull_request.number }}" PRONTO_GITHUB_ACCESS_TOKEN="${{ github.token }}" bundle exec pronto run -f github_status github_pr -c origin/${{ github.base_ref }}
+          PRONTO_PULL_REQUEST_ID="${{ github.event.pull_request.number }}" PRONTO_GITHUB_ACCESS_TOKEN="${{ github.token }}" bundle exec pronto run -f github -c=$(git log --pretty=format:%H | tail -1) --exit-code
