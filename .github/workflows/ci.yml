@@ -32,8 +32,8 @@ jobs:
       - name: Test with RSpec
         env:
           RAILS_ENV: "test"
-          DATABASE_URL: "postgres://postgres@localhost:5432/test_database_name"
-          RUBYOPT: "-W:no-deprecated -W:no-experimental" # Suppress Rails 6 deprecation warnings for ruby 2.7
+          DATABASE_URL: "postgres://postgres@localhost:5432/bloggers_test"
+          RUBYOPT: "-W:no-deprecated -W:no-experimental"
         run: |
           bundle exec rails db:setup
           bundle exec rspec
