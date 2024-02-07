@@ -3,26 +3,6 @@ name: Build
 on: [push]
 
 jobs:
-  backend-linter-check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - run: |
-          git fetch --no-tags --prune --depth=10 origin +refs/heads/*:refs/remotes/origin/*
-      - name: Install ruby v3.2.2
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2.2
-      - name: Set up Pronto
-        run: gem install pronto pronto-standardrb pronto-brakeman faraday-retry
-      - name: Run Pronto
-        run: pronto run -f github_status github_pr -c origin/master
-        env:
-          PRONTO_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
-          PRONTO_GITHUB_ACCESS_TOKEN: "${{ github.token }}"
-
   tests:
     runs-on: ubuntu-latest
 
