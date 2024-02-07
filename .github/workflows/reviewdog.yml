@@ -2,24 +2,31 @@ name: reviewdog
 
 on: [pull_request]
 
-permissions:
-  contents: read
-  pull-requests: write
-
 jobs:
-  rubocop:
-    name: runner/rubocop
+  reviewdog:
+    name: reviewdog
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install ruby v3.2.2
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
-      - name: rubocop
-        uses: reviewdog/action-rubocop@v2
+      - name: Setup cache key and directory for gems cache
+        uses: actions/cache@v1
         with:
-          rubocop_version: gemfile
-          rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile rubocop-performance:gemfile rubocop:gemfile
-          reporter: github-pr-review
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-use-ruby-${{ hashFiles('**/Gemfile.lock') }}
+      - name: Bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+      - name: Run reviewdog
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          reviewdog -reporter=github-pr-review -runners=golint,govet
