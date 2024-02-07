@@ -12,7 +12,7 @@ AllCops:
     - "config/**/*"
     - "script/**/*"
     - "bin/{rails,rake,yarn}"
-    - "vendor/"
+    - "vendor/bundle/**/*"
 
 # Not require a top-level documentation of classes and modules
 Style/Documentation:
