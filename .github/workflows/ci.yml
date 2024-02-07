@@ -16,7 +16,7 @@ jobs:
         with:
           ruby-version: 3.2.2
       - name: Set up Pronto
-        run: gem install pronto pronto-standardrb pronto-brakeman
+        run: gem install pronto pronto-standardrb pronto-brakeman faraday-retry
       - name: Run Pronto
         run: pronto run -f github_status github_pr -c origin/$
         env:
