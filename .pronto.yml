@@ -1,0 +1,16 @@
+all:
+  exclude:
+    - .*
+    - .**/*
+    - bin/**/*
+    - db/schema.rb
+    - db/migrate/**/
+    - config/**/*
+    - vendor/**/*
+    - node_modules/**/*
+    - public/packs/**/*
+
+max_warnings: 150
+warnings_per_review: 30
+verbose: false
+runners: [rubocop]
