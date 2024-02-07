@@ -23,8 +23,6 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 # gem 'redis", '>= 4.0.1'
 # gem 'kredis'
 # gem 'bcrypt', '~> 3.1.7'
-# gem 'image_processing', '~> 1.2'
-
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'
