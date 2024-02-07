@@ -1,0 +1,22 @@
+name: Pronto
+on: [pull_request]
+
+jobs:
+  pronto:
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_WITHOUT: "default test staging"
+      MAKE: "make --jobs 4"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: Run Pronto
+        run: |
+          PRONTO_PULL_REQUEST_ID="${{ github.event.pull_request.number }}" PRONTO_GITHUB_ACCESS_TOKEN="${{ github.token }}" bundle exec pronto run -f github_status github_pr -c origin/${{ github.base_ref }}

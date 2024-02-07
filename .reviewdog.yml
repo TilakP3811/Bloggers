@@ -1,4 +1,0 @@
-runner:
-  rubocop:
-    checkers:
-      rubocop:
