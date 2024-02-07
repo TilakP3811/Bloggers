@@ -4,6 +4,9 @@ on: [pull_request]
 jobs:
   pronto:
     runs-on: ubuntu-latest
+    env:
+      BUNDLE_WITHOUT: "default test master"
+      MAKE: "make --jobs 4"
 
     steps:
       - name: Checkout code
