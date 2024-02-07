@@ -29,6 +29,7 @@ group :development, :test do
   gem 'pronto'
   gem 'pronto-rubocop', require: false
   gem 'pry', '~> 0.14.2'
+  gem 'faraday-retry'
 end
 
 group :test do
