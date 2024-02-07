@@ -27,9 +27,11 @@ jobs:
           reviewdog_version: latest
       - name: Run rubocop
         run: |
-          mkdir /tmp/reviewdog
-          bundle exec rubocop --format offenses --out /tmp/reviewdog/rubocop.txt || true
-          reviewdog -f=rubocop /tmp/reviewdog/rubocop.txt
+          mkdir /tmp/rubocop
+          bundle exec rubocop --format json --out /tmp/rubocop/rubocop.json || true
+      - name: Run reviewdog
+        run: |
+          reviewdog -f=rubocop -reporter=github-pr-review /tmp/rubocop/rubocop.json
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
