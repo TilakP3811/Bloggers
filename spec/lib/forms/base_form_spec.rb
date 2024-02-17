@@ -121,4 +121,18 @@ describe Forms::BaseForm do
       end
     end
   end
+
+  describe '#report_unknown_error' do
+    def report_unknown_error
+      form.send :report_unknown_error
+    end
+
+    context 'when call' do
+      before { report_unknown_error }
+
+      it 'adds unknowm error to the model' do
+        expect(form.errors.messages[:non_field_errors]).to eql ['Something went wrong!']
+      end
+    end
+  end
 end
