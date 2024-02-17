@@ -7,16 +7,6 @@ class ApplicationRecord < ActiveRecord::Base
     Fear.option(find_by(*))
   end
 
-  def self.wrap_optionals
-    columns.each do |column|
-      next unless column.null
-
-      define_method column.name do
-        Fear.option self[column.name]
-      end
-    end
-  end
-
   def try_update(*)
     is_success = update(*)
 
