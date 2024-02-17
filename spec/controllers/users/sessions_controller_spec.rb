@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# TODO: add more session test cases example - what if user is locked.
 describe Users::SessionsController do
   before { request.env['devise.mapping'] = Devise.mappings[:user] }
 
