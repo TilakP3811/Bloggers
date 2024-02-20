@@ -16,7 +16,7 @@ module Forms
 
     def do_submit
       maybe_incomplete_registration.match do |m|
-        m.some { |registration| complete_registration(registration) }
+        m.some { |registration| process_confirmation(registration) }
         m.none { add_field_error :activation_code, INVALID_ACTIVATION_CODE }
       end
     end
@@ -26,6 +26,12 @@ module Forms
         uuid:            verification_params[:registration_uuid],
         activation_code: verification_params[:activation_code]
       )
+    end
+
+    def process_confirmation(registration)
+      return complete_registration(registration) unless registration.user.verified
+
+      add_field_error :activation_code, I18n.t('devise.confirmations.already_confirmed')
     end
 
     def complete_registration(registration)

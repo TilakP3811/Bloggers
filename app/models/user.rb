@@ -7,14 +7,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :timeoutable, :lockable
+         :recoverable, :rememberable, :timeoutable, :lockable
 
   has_one :incomplete_registration, class_name: 'Registration', dependent: :destroy
 
   validates :email, presence: true, uniqueness: { case_sensitive: true },
                     format: {
                       with:    EMAIL_FORMAT,
-                      message: I18n.t('devise.failure.invalid_email')
+                      message: I18n.t('devise.failure.invalid_email'),
                     }
   validates :password, confirmation: true
 

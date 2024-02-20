@@ -18,6 +18,9 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Layout/LineLength:
+  Max: 120
+
 # Too short methods lead to extraction of single-use methods, which can make
 # the code easier to read (by naming things), but can also clutter the class
 Metrics/MethodLength:
@@ -31,8 +34,22 @@ Metrics/BlockLength:
     - "spec/**/*.rb"
     - "config/routes.rb"
 
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
 RSpec/NestedGroups:
   Max: 5
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/features/**/*'
+    - 'spec/requests/**/*'
+
+RSpec/ExampleLength:
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
 
 Style/HashEachMethods:
   Enabled: true
@@ -49,3 +66,15 @@ Style/HashTransformValues:
 
 Style/NegatedIf:
   Enabled: false
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
+
+Lint/UnreachableLoop:
+  AllowedPatterns:
+    - '^maybe_.*'
+
+Naming/VariableNumber:
+  AllowedIdentifiers:
+    - payee_num_2
+    - payee_num_3

@@ -1,0 +1,5 @@
+en:
+  mailer:
+    user:
+      account_existed: 'Your email was used to create a new account on Bloggers'
+      account_activation: 'Please verify your email address'

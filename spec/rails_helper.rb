@@ -38,7 +38,7 @@ end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
-    Rails.root.join('spec/fixtures')
+    Rails.root.join('spec/fixtures'),
   ]
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
@@ -50,6 +50,7 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
+  config.include ActiveJob::TestHelper
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
