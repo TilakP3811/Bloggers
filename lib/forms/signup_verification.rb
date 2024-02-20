@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# TODO: verify user is present of not verified before proceed
 module Forms
   class SignupVerification < BaseForm
     attr_accessor :verification_params

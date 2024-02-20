@@ -2,7 +2,6 @@
 
 require 'rails_helper'
 
-# TODO: add more session test cases example - what if user is locked.
 describe Users::SessionsController do
   before { request.env['devise.mapping'] = Devise.mappings[:user] }
 
@@ -22,9 +21,7 @@ describe Users::SessionsController do
     context 'when user is not found' do
       before { send_request }
 
-      it 'respond with unprocessable entity status' do
-        expect(response).to have_http_status :unprocessable_entity
-      end
+      it_behaves_like 'returns 422'
 
       it 'response with proper error message' do
         expect(controller.flash[:alert]).to eql I18n.t('devise.failure.not_found_in_database')
