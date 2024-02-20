@@ -10,6 +10,16 @@ describe Forms::SignupVerification do
   let(:params) { { registration_uuid: registration.uuid, activation_code: registration.activation_code } }
   let(:form) { described_class.new(verification_params: params) }
 
+  context 'when user is already verified' do
+    let(:current_user) { create(:user) }
+
+    it { is_expected.to be_failure }
+
+    its('exception.as_json') do
+      is_expected.to eql activation_code: [I18n.t('devise.confirmations.already_confirmed')]
+    end
+  end
+
   context 'when registration is valid' do
     it { is_expected.to be_success }
     it { is_expected.to eq Fear.success Fear.none }
