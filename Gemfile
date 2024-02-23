@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.2.2'
+ruby '3.2.3'
 
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
@@ -39,6 +39,7 @@ group :test do
 end
 
 group :development do
+  gem 'dotenv'
   gem 'letter_opener'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false

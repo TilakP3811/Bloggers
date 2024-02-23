@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:16.2
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${db_user}
+      POSTGRES_PASSWORD: ${db_password}
+  app:
+    image: bloggers-app
+    build: .
+    environment:
+      - db_host=db
+      - db_user=${db_user}
+      - db_password=${db_password}
+    volumes:
+      - .:/app:cached
+      - ~/.pry_history:/root/.pry_history
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+volumes:
+  postgresql:
