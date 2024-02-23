@@ -28,7 +28,10 @@ db-setup :
 db-initialize :
 	${APP} "bundle exec rake db:migrate db:seed"
 
-first-run: env-setup build yarn-install db-start db-clean db-setup db-initialize
+assets-precompile :
+	${APP} "bundle exec rails assets:precompile"
+	
+first-run: env-setup build yarn-install db-start db-clean db-setup db-initialize assets-precompile
 
 sh :
 	${APP} "bash"
