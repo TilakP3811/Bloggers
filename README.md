@@ -1,24 +1,39 @@
-# README
+# Bloggers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+Pre-requisites:
+* [Docker](https://docs.docker.com/desktop/mac/install/)
 
-* Ruby version
+Run :
+```
+make first-run
+```
 
-* System dependencies
+> **NOTE:** If you end up needing to update the installed gems you won't be running bundle, you'll want to run `make build`. Using `bundle install` will appear to work, but it won't actually update the bundled gems for docker.
 
-* Configuration
+Now start the server:
+```
+make server
+```
 
-* Database creation
+You should now have a local env with the following services:
 
-* Database initialization
+- db : mysql database
+- app : rails web app
 
-* How to run the test suite
+## Development workflow
 
-* Services (job queues, cache servers, search engines, etc.)
+A common entry point to start developing is to run either `make server` or `make sh`, this runs all the services:
 
-* Deployment instructions
+```
+make sh
+```
 
-* ...
+## Seeds
+
+To reset your DB to what is in the seeds file, you can run `rake db:reset` or the following:
+
+```
+rake db:drop && rake db:create && rake db:schema:load && rake db:seed
+```

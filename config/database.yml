@@ -13,15 +13,19 @@
 # gem "pg"
 #
 default: &default
+  host: <%= ENV['db_host'] %>
   adapter: postgresql
   encoding: unicode
+  reconnect: false
+  database: <%= ENV['db_name'] %>
+  username: <%= ENV['db_user'] %>
+  password: <%= ENV['db_password'] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: bloggers_development
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
