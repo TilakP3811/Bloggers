@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  HELLO_BLOGGER_EMAIL = 'hello@blogger.com'
+  BLOGGERS_EMAIL = 'tilak@webkorps.com'
 
-  default from: %("Bloggers" <#{HELLO_BLOGGER_EMAIL}>)
+  default from: %("Bloggers" <#{BLOGGERS_EMAIL}>)
   layout 'mailer'
 end

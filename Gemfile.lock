@@ -284,6 +284,12 @@ GEM
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    ruby_http_client (3.5.5)
+    sendgrid-actionmailer (3.2.0)
+      mail (~> 2.7)
+      sendgrid-ruby (~> 6.4)
+    sendgrid-ruby (6.7.0)
+      ruby_http_client (~> 3.4)
     shoulda-matchers (6.1.0)
       activesupport (>= 5.2.0)
     simplecov (0.22.0)
@@ -357,6 +363,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  sendgrid-actionmailer
   shoulda-matchers (~> 6.0)
   simplecov
   simplecov-cobertura
