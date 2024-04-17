@@ -115,6 +115,7 @@ GEM
     faker (3.2.3)
       i18n (>= 1.8.11, < 2)
     fear (2.0.1)
+    foreman (0.87.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -350,6 +351,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fear
+  foreman
   jbuilder
   jsbundling-rails
   letter_opener
