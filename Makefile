@@ -31,7 +31,7 @@ db-initialize :
 assets-precompile :
 	${APP} "bundle exec rails assets:precompile"
 	
-first-run: env-setup build yarn-install db-start db-clean db-setup db-initialize assets-precompile
+first-run: env-setup build yarn-install db-start db-clean db-setup db-initialize
 
 sh :
 	${APP} "bash"
